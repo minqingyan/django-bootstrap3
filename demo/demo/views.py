@@ -6,8 +6,10 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models.fields.files import FieldFile
 from django.views.generic import FormView
 from django.views.generic.base import TemplateView
-from django.contrib import messages
+import json
 
+import os;
+import requests
 from .forms import ContactForm, FilesForm, ContactFormSet
 
 
@@ -24,7 +26,7 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        messages.info(self.request, "hello http://example.com")
+        # messages.info(self.request, "hello http://example.com")
         return context
 
 
@@ -59,11 +61,43 @@ class FormWithFilesView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super(FormWithFilesView, self).get_context_data(**kwargs)
-        context["layout"] = self.request.GET.get("layout", "vertical")
+        # context["layout"] = self.request.GET.get("layout", "vertical")
+        obj = self.request.FILES.get("file")
+        baseDir = os.path.dirname(os.path.abspath(__name__));
+        jpgdir = os.path.join(baseDir, 'static/upload', '');
+        if (obj == None):
+            return context
+
+        self.template_name = "demo/form_inline.html"
+        filename = os.path.join(jpgdir, obj.name);
+        fobj = open(filename, 'wb');
+        for chrunk in obj.chunks():
+            fobj.write(chrunk);
+        fobj.close();
+        context['file'] = "exist"
+        d = self.get_remote()
+        result = json.loads(d)
+        context['language'] = result['language']
+        context['code_info'] = result['code_info']
+        context['match_feature'] = result['match_feature']
+        context['type'] = result['type']
+        context['md5'] = result['md5']
         return context
 
     def get_initial(self):
-        return {"file4": fieldfile}
+        return {"file": None}
+
+    def get_remote(self):
+        # d = requests.get("http://baidu.com")
+        d = {
+            'status': 1,
+            'language': 'php',
+            'code_info': 'cat /etc/passwd',
+            'match_feature': ['common_webshell24'],
+            'type': 'php webshell',
+            'md5': '2eeb8bf151221373ee3fd89d58ed4d38'
+        }
+        return json.dumps(d)
 
 
 class PaginationView(TemplateView):

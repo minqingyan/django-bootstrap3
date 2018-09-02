@@ -1,17 +1,238 @@
 {% extends 'demo/base.html' %}
 
 {% load bootstrap3 %}
-
+{% load static %}
 {% block title %}
-    Forms
 {% endblock %}
 
 {% block content %}
+<!--<form role="form" method="post" enctype="multipart/form-data" {% if layout != 'vertical' %}class="form-{{ layout }}"{% endif %}>-->
+        <!--{% csrf_token %}-->
+        <!--{% bootstrap_form form layout=layout %}-->
+        <!--{% buttons submit='OK' reset="Cancel" %}{% endbuttons %}-->
+    <!--</form>-->
+<div id="scan" class="page color-4 ng-scope" ui-view=""><div class="inner-page ng-scope">
+  <h2 class="page-headline">在线查杀木马</h2>
+</div>
 
-    <form role="form" method="post" enctype="multipart/form-data" {% if layout != 'vertical' %}class="form-{{ layout }}"{% endif %}>
-        {% csrf_token %}
-        {% bootstrap_form form layout=layout %}
-        {% buttons submit='OK' reset="Cancel" %}{% endbuttons %}
+<div class="inner-page visible-xs intro-xs ng-scope">
+  <div class="row inner-page" style="padding-bottom: 0">
+    <div class="col-xs-2">
+      <p class="text-right" style="margin: 0">
+        Q.
+      </p>
+    </div>
+    <div class="col-xs-10">
+      <p style="margin: 0; padding-right: 10px;">
+        都可以上传什么类型的文件？
+      </p>
+    </div>
+  </div>
+
+  <div class="row inner-page" style="padding-top: 0">
+    <div class="col-xs-2">
+      <p class="text-right" style="margin-top: 0">
+        A.
+      </p>
+    </div>
+    <div class="col-xs-10">
+      <p style="margin: 0; padding-right: 10px;">
+        我们支持的文件类型有
+        <!-- ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">php, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">phtml, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">inc, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">php3, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">php4, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">php5, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">war, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">jsp, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">jspx, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">asp, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">aspx, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">cer, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">cdx, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">asa, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">ashx, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">asmx, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">cfm</span><!-- end ngRepeat: t in supported -->
+        <br> 我们支持的压缩包有
+        <!-- ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">rar, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">zip, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">tar, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">xz, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">tbz, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">tgz, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">tbz2, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">bz2, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">gz</span><!-- end ngRepeat: t in supported_arc -->
+      </p>
+    </div>
+  </div>
+
+  <!-- ngRepeat: x in qa --><div ng-repeat="x in qa" class="ng-scope">
+    <div class="row inner-page" style="padding-bottom: 0">
+      <div class="col-xs-2">
+        <p class="text-right" style="margin: 0">
+          Q.
+        </p>
+      </div>
+      <div class="col-xs-10">
+        <p style="margin: 0; padding-right: 10px;" class="ng-binding">
+          这个服务是免费的吗?
+        </p>
+      </div>
+    </div>
+
+    <div class="row inner-page" style="padding-top: 0">
+      <div class="col-xs-2">
+        <p class="text-right" style="margin-top: 0">
+          A.
+        </p>
+      </div>
+      <div class="col-xs-10">
+        <p style="margin: 0; padding-right: 10px;" class="ng-binding">
+          是的，目前不收费，也不限制上传数量
+        </p>
+      </div>
+    </div>
+  </div><!-- end ngRepeat: x in qa --><div ng-repeat="x in qa" class="ng-scope">
+    <div class="row inner-page" style="padding-bottom: 0">
+      <div class="col-xs-2">
+        <p class="text-right" style="margin: 0">
+          Q.
+        </p>
+      </div>
+      <div class="col-xs-10">
+        <p style="margin: 0; padding-right: 10px;" class="ng-binding">
+          WEBDIR+ 都会对文件做哪些操作?
+        </p>
+      </div>
+    </div>
+
+    <div class="row inner-page" style="padding-top: 0">
+      <div class="col-xs-2">
+        <p class="text-right" style="margin-top: 0">
+          A.
+        </p>
+      </div>
+      <div class="col-xs-10">
+        <p style="margin: 0; padding-right: 10px;" class="ng-binding">
+          上传后的文件或者压缩包，会经过WEBDIR+三种引擎的检测，检测后文件会被立即删除，全程无人工介入
+        </p>
+      </div>
+    </div>
+  </div><!-- end ngRepeat: x in qa --><div ng-repeat="x in qa" class="ng-scope">
+    <div class="row inner-page" style="padding-bottom: 0">
+      <div class="col-xs-2">
+        <p class="text-right" style="margin: 0">
+          Q.
+        </p>
+      </div>
+      <div class="col-xs-10">
+        <p style="margin: 0; padding-right: 10px;" class="ng-binding">
+          WEBDIR+ 是如何检测木马的?
+        </p>
+      </div>
+    </div>
+
+    <div class="row inner-page" style="padding-top: 0">
+      <div class="col-xs-2">
+        <p class="text-right" style="margin-top: 0">
+          A.
+        </p>
+      </div>
+      <div class="col-xs-10">
+        <p style="margin: 0; padding-right: 10px;" class="ng-binding">
+          传统的正则表达式方式，存在高误报、低查杀率的问题，WEBDIR+采用先进的动态监测技术，结合多种引擎零规则查杀
+        </p>
+      </div>
+    </div>
+  </div><!-- end ngRepeat: x in qa -->
+
+  <div class="row inner-page">
+    <div class="col-xs-12">
+      <p class="text-center">
+        请用PC访问 <code>scanner.baidu.com</code> <br>
+        暂不支持手机上传文件
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<div class="inner-page hidden-xs ng-scope">
+  <div class="col-md-6 qa">
+    <div class="row">
+      <div class="col-md-2">
+        <p class="text-right">
+          Q.
+        </p>
+        <p class="text-right">
+          A.
+        </p>
+      </div>
+
+      <div class="col-md-10">
+        <p>
+          都可以上传什么类型的文件？
+        </p>
+        <p>
+          我们支持的文件类型有
+          <!-- ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">php, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">phtml, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">inc, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">php3, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">php4, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">php5, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">war, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">jsp, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">jspx, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">asp, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">aspx, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">cer, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">cdx, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">asa, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">ashx, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">asmx, </span><!-- end ngRepeat: t in supported --><span ng-repeat="t in supported" style="color: red" class="ng-binding ng-scope">cfm</span><!-- end ngRepeat: t in supported -->
+          <br> 我们支持的压缩包有
+          <!-- ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">rar, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">zip, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">tar, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">xz, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">tbz, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">tgz, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">tbz2, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">bz2, </span><!-- end ngRepeat: t in supported_arc --><span ng-repeat="t in supported_arc" style="color: red" class="ng-binding ng-scope">gz</span><!-- end ngRepeat: t in supported_arc -->
+        </p>
+      </div>
+    </div>
+
+    <!-- ngRepeat: x in qa --><div class="row ng-scope" ng-repeat="x in qa">
+      <div class="col-md-2">
+        <p class="text-right">
+          Q.
+        </p>
+        <p class="text-right">
+          A.
+        </p>
+      </div>
+
+      <div class="col-md-10">
+        <p class="ng-binding">
+          这个服务是免费的吗?
+        </p>
+        <p class="ng-binding">
+          是的，目前不收费，也不限制上传数量
+        </p>
+      </div>
+    </div><!-- end ngRepeat: x in qa --><div class="row ng-scope" ng-repeat="x in qa">
+      <div class="col-md-2">
+        <p class="text-right">
+          Q.
+        </p>
+        <p class="text-right">
+          A.
+        </p>
+      </div>
+
+      <div class="col-md-10">
+        <p class="ng-binding">
+          WEBDIR+ 都会对文件做哪些操作?
+        </p>
+        <p class="ng-binding">
+          上传后的文件或者压缩包，会经过WEBDIR+三种引擎的检测，检测后文件会被立即删除，全程无人工介入
+        </p>
+      </div>
+    </div><!-- end ngRepeat: x in qa --><div class="row ng-scope" ng-repeat="x in qa">
+      <div class="col-md-2">
+        <p class="text-right">
+          Q.
+        </p>
+        <p class="text-right">
+          A.
+        </p>
+      </div>
+
+      <div class="col-md-10">
+        <p class="ng-binding">
+          WEBDIR+ 是如何检测木马的?
+        </p>
+        <p class="ng-binding">
+          传统的正则表达式方式，存在高误报、低查杀率的问题，WEBDIR+采用先进的动态监测技术，结合多种引擎零规则查杀
+        </p>
+      </div>
+    </div><!-- end ngRepeat: x in qa -->
+
+  </div>
+
+  <div class="col-md-6">
+    <div class="form-group">
+      <form action="/form_with_files" class="dropzone" id="file-dropzone" style="height: 250px;">
     </form>
+      <!--<form class="dropzone ng-pristine ng-valid dz-clickable" id="file-dropzone" method="post" enctype="multipart/form-data">-->
+      <!--<div class="dz-default dz-message"><span>点击上传文件</span></div></form>-->
+    </div>
+    <a id='submit' href="#scanResult" class="btn btn-lg btn-block btn-primary ng-binding" ng-click="startScan()" ng-disabled="hashes.length == 0">
+        开始扫描</a>
+  </div>
+
+</div>
+</div>
+
+
 
 {% endblock %}

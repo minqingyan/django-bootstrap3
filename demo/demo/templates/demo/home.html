@@ -1,8 +1,37 @@
 {% extends 'demo/base.html' %}
 {% load bootstrap3 %}
+{% load static %}
 
-{% block title %}django-bootstrap3{% endblock %}
+{% block title %}{% endblock %}
 
 {% block content %}
-    This is <em>bootstrap3</em> for <strong>Django</strong>.
+<div id="home" class="page color-1">
+    <div class="inner-page">
+      <h2 class="page-headline large">下一代WebShell检测引擎</h2>
+      <h5 class="text-center" style="color: white">当前引擎版本: 2018-0710-1000</h5>
+    </div>
+  <div class="row">
+    <div class=" inner-page">
+      <div class="col-md-8 col-md-push-4">
+        <img src="/static/dashboard.png" style="box-shadow: 0 0 0 4px hsl(0, 0%, 100%), 0 0 0 5px hsl(0, 0%, 30%)">
+      </div>
+      <div class="col-md-4 col-md-pull-8 col-xs-12">
+        <ul class="big-list">
+          <li><i class="fa fa-check"></i> 高查杀率</li>
+          <li><i class="fa fa-bug"></i> 低误报</li>
+          <li><i class="fa fa-cog"></i> 高性能</li>
+        </ul>
+        <br>
+        <a href="{% url 'form_with_files' %}" target="_self" class="scroll btn btn-primary btn-centered visible-xs">
+          <i class="fa fa-angle-double-right"></i> 在线查杀
+        </a>
+
+        <a href="{% url 'form_with_files' %}" target="_self" class="scroll btn btn-primary btn-centered hidden-xs" style="margin-left: 50px">
+          <i class="fa fa-angle-double-right"></i> 在线查杀
+        </a>
+      </div>
+    </div>
+    </div>
+  </div>
 {% endblock %}
+

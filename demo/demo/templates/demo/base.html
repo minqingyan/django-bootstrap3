@@ -1,26 +1,96 @@
 {% extends 'demo/bootstrap.html' %}
 
 {% load bootstrap3 %}
-
+{% load static %}
 {% block bootstrap3_content %}
-    <div class="container">
-        <h1>{% block title %}(no title){% endblock %}</h1>
 
-        <p>
-            <a href="{% url 'home' %}">home</a>
-            <a href="{% url 'formset_default' %}">formset</a>
-            <a href="{% url 'form_default' %}">form</a>
-            <a href="{% url 'form_by_field' %}">form_by_field</a>
-            <a href="{% url 'form_horizontal' %}">form_horizontal</a>
-            <a href="{% url 'form_inline' %}">form_inline</a>
-            <a href="{% url 'form_with_files' %}">form_with_files</a>
-            <a href="{% url 'pagination' %}">pagination</a>
-            <a href="{% url 'misc' %}">miscellaneous</a>
-        </p>
+<!DOCTYPE html>
+<html lang="en">
+  <head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+  <title>WEBDIR</title>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="author" content="c0debreak">
+
+  <link href="/static/the-story.min.css" rel="stylesheet" media="screen">
+  <link rel="stylesheet" href="/static/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+  <script src="/static/jquery.min.js" charset="utf-8"></script>
+  <script src="/static/bootstrap.min.js" charset="utf-8"></script>
+  <script src="/static/angular.min.js" charset="utf-8"></script>
+  <script src="/static/angular-ui-router.min.js" charset="utf-8"></script>
+  <script src="/static/ocLazyLoad.min.js" charset="utf-8"></script>
+
+  <script src="/static/dropzone.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="/static/dropzone.css" media="screen" title="no title" charset="utf-8">
+
+  <!--<script src="/static/dropzone.min.js" charset="utf-8"></script>-->
+  <!--<link rel="stylesheet" href="/static/dropzone.css" media="screen" title="no title" charset="utf-8">-->
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="app" src="/static/app.js"></script>
+    <script src="/static/intro.js?ver=1535815554944" async=""></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="master" src="/static/master.js"></script>
+  </head>
+
+  <body id="top" data-target=".navbar" data-offset="50">
+  <!-- Static navbar -->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar-container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-reorder"></i>
+        </button>
+        <a class="navbar-brand" href="#">WEBDIR+</a>
+      </div>
+      <!--<div id="nav-collapse" class="collapse navbar-collapse navbar-ex1-collapse">-->
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="brand-1" href="{% url 'home' %}">首页</a></li>
+          <li class="active"><a href="{% url 'form_with_files' %}" class="brand-4">在线查杀</a></li>
+          <li><a href="{% url 'misc' %}" class="brand-2">开放 API</a></li>
+          <li><a href="#contact" class="brand-2"> 联系我们</a></li>
+        </ul>
+      <!--</div>-->
+    </div>
+    <!-- /.navbar-container -->
+  </nav>
+  </body>
+  <script>
+    $(function () {
+        $(".navbar-nav").find("li").each(function () {
+            var a = $(this).find("a:first")[0];
+            if ($(a).attr("href") === location.pathname) {
+                $(this).addClass("active");
+            } else {
+                $(this).removeClass("active");
+            }
+        });
+    })
+  </script>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+        <!--<p>-->
+            <!--<a href="{% url 'home' %}">home</a>-->
+            <!--<a href="{% url 'formset_default' %}">formset</a>-->
+            <!--<a href="{% url 'form_default' %}">form</a>-->
+            <!--<a href="{% url 'form_by_field' %}">form_by_field</a>-->
+            <!--<a href="{% url 'form_horizontal' %}">form_horizontal</a>-->
+            <!--<a href="{% url 'form_inline' %}">form_inline</a>-->
+            <!--<a href="{% url 'form_with_files' %}">form_with_files</a>-->
+            <!--<a href="{% url 'pagination' %}">pagination</a>-->
+            <!--<a href="{% url 'misc' %}">miscellaneous</a>-->
+        <!--</p>-->
 
         {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
 
         {% block content %}(no content){% endblock %}
-    </div>
+<!--snip-->
 
 {% endblock %}

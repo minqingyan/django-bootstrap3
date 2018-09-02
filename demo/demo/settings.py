@@ -11,7 +11,7 @@ BOOTSTRAP3_FOLDER = os.path.abspath(os.path.join(BASE_DIR, "..", "bootstrap3"))
 if BOOTSTRAP3_FOLDER not in sys.path:
     sys.path.insert(0, BOOTSTRAP3_FOLDER)
 
-DEBUG = True
+DEBUG = False
 
 ADMINS = ()
 
@@ -55,7 +55,7 @@ MEDIA_URL = ""
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ""
+STATIC_ROOT = os.path.join( BASE_DIR, 'static')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -63,6 +63,7 @@ STATIC_URL = "/static/"
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -79,6 +80,12 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = "8s)l4^2s&&0*31-)+6lethmfy3#r1egh^6y^=b9@g!q63r649_"
 
+MIDDLEWARE_CLASSES = (
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+)
 MIDDLEWARE = (
     "django.middleware.common.CommonMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -153,4 +160,5 @@ BOOTSTRAP3 = {
     "error_css_class": "bootstrap3-error",
     "required_css_class": "bootstrap3-required",
     "javascript_in_head": True,
+    'include_jquery': True,
 }

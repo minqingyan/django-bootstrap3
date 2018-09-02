@@ -3,15 +3,63 @@
 {% load bootstrap3 %}
 
 {% block title %}
-    Forms
 {% endblock %}
 
 {% block content %}
 
-    <form role="form" class="form-inline" method="post">
-        {% csrf_token %}
-        {% bootstrap_form form layout='inline' %}
-        {% buttons submit='OK' reset='Cancel' layout='inline' %}{% endbuttons %}
-    </form>
+<div class="result">
+{% if file == 'exist' %}
+  <div id="scanResult" class="page color-4 ng-scope" ui-view="">
+    <div class="visible-xs ng-scope">
+    <div class="inner-page">
+    <div class="col-xs-12">
+      <h2>扫描结果</h2>
+      </div>
+    </div>
 
+    <div class="inner-page">
+      <!-- ngRepeat: d in data -->
+    </div>
+  </div>
+  <!-- 小屏幕 -->
+  <div class="hidden-xs ng-scope">
+    <div class="inner-page">
+      <div class="col-xs-12">
+        <h2>
+          扫描结果
+          <span class="pull-right">
+            <a href="{% url 'form_with_files' %}">
+              <i class="fa fa-angle-double-left">
+              </i>
+              扫描其它文件
+            </a>
+          </span>
+        </h2>
+      </div>
+    </div>
+    <div class="inner-page">
+      <!-- ngRepeat: d in data -->
+      <table class="table table-hover" id="l" data-search="true" data-show-toggle="true" data-show-columns="true" data-mobile-responsive="true">
+      <thead>
+      <tr>
+        <th style="" data-field="0"><div class="th-inner ">Name</div><div class="fht-cell"></div></th>
+        <th style="" data-field="1"><div class="th-inner ">Parameter</div><div class="fht-cell"></div></th>
+        <th style="" data-field="2"><div class="th-inner ">Default</div><div class="fht-cell"></div></th>
+        <th style="" data-field="2"><div class="th-inner ">Default</div><div class="fht-cell"></div></th>
+        <th style="" data-field="2"><div class="th-inner ">Default</div><div class="fht-cell"></div></th>
+      </tr></thead>
+      <tbody><tr data-index="0">
+        <td style="">{{match_feature}}</td>
+        <td style="">{{type}}</td>
+        <td style="">{{md5}}</td>
+        <td style="">{{code_info}}</td>
+        <td style="">{{language}}</td>
+      </tr>
+      </tbody>
+  </table>
+    </div>
+  </div>
+  </div>
+{% endif %}
+</div>
 {% endblock %}

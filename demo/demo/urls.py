@@ -2,6 +2,8 @@
 from __future__ import unicode_literals
 
 from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
 
 from .views import (
     HomePageView,
@@ -25,4 +27,6 @@ urlpatterns = [
     url(r"^form_with_files$", FormWithFilesView.as_view(), name="form_with_files"),
     url(r"^pagination$", PaginationView.as_view(), name="pagination"),
     url(r"^misc$", MiscView.as_view(), name="misc"),
+    # url(r"^static/(?P<path>.*)$", 'django.views.static.serve',{'document_root': settings.STATIC_URL}),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 ]
