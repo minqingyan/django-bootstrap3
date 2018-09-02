@@ -8,7 +8,7 @@
 {% block content %}
 
 <div class="result">
-{% if file == 'exist' %}
+{% if status == 0 %}
   <div id="scanResult" class="page color-4 ng-scope" ui-view="">
     <div class="visible-xs ng-scope">
     <div class="inner-page">
@@ -42,11 +42,11 @@
       <table class="table table-hover" id="l" data-search="true" data-show-toggle="true" data-show-columns="true" data-mobile-responsive="true">
       <thead>
       <tr>
-        <th style="" data-field="0"><div class="th-inner ">Name</div><div class="fht-cell"></div></th>
-        <th style="" data-field="1"><div class="th-inner ">Parameter</div><div class="fht-cell"></div></th>
-        <th style="" data-field="2"><div class="th-inner ">Default</div><div class="fht-cell"></div></th>
-        <th style="" data-field="2"><div class="th-inner ">Default</div><div class="fht-cell"></div></th>
-        <th style="" data-field="2"><div class="th-inner ">Default</div><div class="fht-cell"></div></th>
+        <th style="" data-field="0"><div class="th-inner ">match_feature</div><div class="fht-cell"></div></th>
+        <th style="" data-field="1"><div class="th-inner ">type</div><div class="fht-cell"></div></th>
+        <th style="" data-field="2"><div class="th-inner ">md5</div><div class="fht-cell"></div></th>
+        <th style="" data-field="2"><div class="th-inner ">code_info</div><div class="fht-cell"></div></th>
+        <th style="" data-field="2"><div class="th-inner ">language</div><div class="fht-cell"></div></th>
       </tr></thead>
       <tbody><tr data-index="0">
         <td style="">{{match_feature}}</td>
