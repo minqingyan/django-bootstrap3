@@ -11,7 +11,8 @@
         <!--{% bootstrap_form form layout=layout %}-->
         <!--{% buttons submit='OK' reset="Cancel" %}{% endbuttons %}-->
     <!--</form>-->
-<div id="scan" class="page color-4 ng-scope" ui-view=""><div class="inner-page ng-scope">
+<div id="scan" class="page color-4 ng-scope">
+  <div class="inner-page ng-scope">
   <h2 class="page-headline">在线查杀木马</h2>
 </div>
 
@@ -216,18 +217,18 @@
         </p>
       </div>
     </div><!-- end ngRepeat: x in qa -->
-
   </div>
 
   <div class="col-md-6">
     <div class="form-group">
-      <form action="/form_with_files" class="dropzone" id="file-dropzone" style="height: 250px;">
-    </form>
-      <!--<form class="dropzone ng-pristine ng-valid dz-clickable" id="file-dropzone" method="post" enctype="multipart/form-data">-->
-      <!--<div class="dz-default dz-message"><span>点击上传文件</span></div></form>-->
+      <form action="/form_with_files" class="dropzone needsclick dz-clickable" id="demo-upload" style="height: 250px;">
+        <div class="dz-message needsclick">
+        Drop files here or click to upload.<br>
+          <span class="note needsclick">(请 <strong>点击</strong> 上传文件.)</span>
+        </div>
+      </form>
     </div>
-    <a id='submit' href="#scanResult" class="btn btn-lg btn-block btn-primary ng-binding" ng-click="startScan()" ng-disabled="hashes.length == 0">
-        开始扫描</a>
+    <a class="btn btn-lg btn-block btn-primary ng-binding" href="{% url 'form_inline' %}" ng-disabled="hashes.length == 0" disabled="true">请先点击上方区域选择文件</a>
   </div>
 
 </div>

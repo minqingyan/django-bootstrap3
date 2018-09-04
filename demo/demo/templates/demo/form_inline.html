@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block content %}
-
+<!-- Latest compiled and minified Locales -->
 <div class="result">
-{% if status == 0 %}
+  ab
   <div id="scanResult" class="page color-4 ng-scope" ui-view="">
     <div class="visible-xs ng-scope">
     <div class="inner-page">
@@ -42,24 +42,30 @@
       <table class="table table-hover" id="l" data-search="true" data-show-toggle="true" data-show-columns="true" data-mobile-responsive="true">
       <thead>
       <tr>
+        <th style="" data-field="0"><div class="th-inner ">file_name</div><div class="fht-cell"></div></th>
         <th style="" data-field="0"><div class="th-inner ">match_feature</div><div class="fht-cell"></div></th>
         <th style="" data-field="1"><div class="th-inner ">type</div><div class="fht-cell"></div></th>
         <th style="" data-field="2"><div class="th-inner ">md5</div><div class="fht-cell"></div></th>
         <th style="" data-field="2"><div class="th-inner ">code_info</div><div class="fht-cell"></div></th>
         <th style="" data-field="2"><div class="th-inner ">language</div><div class="fht-cell"></div></th>
+        <th style="" data-field="2"><div class="th-inner ">time</div><div class="fht-cell"></div></th>
       </tr></thead>
-      <tbody><tr data-index="0">
-        <td style="">{{match_feature}}</td>
-        <td style="">{{type}}</td>
-        <td style="">{{md5}}</td>
-        <td style="">{{code_info}}</td>
-        <td style="">{{language}}</td>
-      </tr>
+      <tbody>
+      {% for item in ret %}
+          <tr data-index="0">
+            <td style="">{{item.file_name}}</td>
+            <td style="">{{item.match_feature}}</td>
+            <td style="">{{item.type}}</td>
+            <td style="">{{item.md5}}</td>
+            <td style="">{{item.code_info}}</td>
+            <td style="">{{item.language}}</td>
+            <td style="">{{item.time}}</td>
+          </tr>
+      {% endfor %}
       </tbody>
   </table>
     </div>
   </div>
   </div>
-{% endif %}
 </div>
 {% endblock %}

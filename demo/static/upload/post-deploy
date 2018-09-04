@@ -1,0 +1,16 @@
+#!/bin/bash
+set -e
+echo `ls`
+echo `pwd`
+MODULE=`ls */*.war | head -1|awk -F/ '{print $NF}'|awk -F'-release-' '{print $1}'`
+echo $MODULE
+if [ "$MODULE" == "" ]; then
+MODULE="app"
+fi
+MODULE=$MODULE"/*"
+TARGET=(`ls -t $MODULE | grep '.war'`)
+MODULE_PATH=$TARGET
+MODULE_BIN=bin/zc
+echo $MODULE_PATH
+$MODULE_BIN init $MODULE_PATH
+$MODULE_BIN deploy $MODULE_PATH
