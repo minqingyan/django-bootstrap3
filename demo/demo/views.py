@@ -5,7 +5,7 @@ from django.core.files.storage import default_storage
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db.models.fields.files import FieldFile
 from django.views.generic import FormView
-from django.views.generic.base import View
+from django.views.generic.base import RedirectView
 from django.views.generic.base import TemplateView
 from utils import transfer_to_json_format
 from utils import get_local_time
@@ -85,7 +85,6 @@ class FormWithFilesView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super(FormWithFilesView, self).get_context_data(**kwargs)
-        return context
         # context["layout"] = self.request.GET.get("layout", "vertical")
         obj = self.request.FILES.get("file")
         if (obj == None):
@@ -113,8 +112,8 @@ class FormWithFilesView(FormView):
         kwargs = {
             "path": jpgdir
         }
-        # resp = requests.get(LOCAL_SERVER_DOMAIN, **kwargs)
-        resp = '{"status": 1, "language": "php", "code_info": "cat /etc/passwd", "match_feature": ["common_webshell24"], "type": "php webshell", "md5": "2eeb8bf151221373ee3fd89d58ed4d38"}'
+        resp = requests.get(LOCAL_SERVER_DOMAIN, **kwargs)
+        # resp = '{"status": 1, "language": "php", "code_info": "cat /etc/passwd", "match_feature": ["common_webshell24"], "type": "php webshell", "md5": "2eeb8bf151221373ee3fd89d58ed4d38"}'
         try:
             d = transfer_to_json_format(resp)
         except ValueError:
